@@ -4,6 +4,7 @@
 #include "cm/rm_cm.h"
 #include "cu/rm_cu.h"
 #include "cs/rm_cs.h"
+#include "half_cu/rm_half_cu.h"
 #include "tower_cm/rm_tower_cm.h"
 #include "tower_cu/rm_tower_cu.h"
 #include "elastic/rm_elastic.h"
@@ -43,6 +44,7 @@ extern "C"
         ASketchModule_onLoad(ctx, argv, argc);
         WavingModule_onLoad(ctx, argv, argc);
         HGModule_onLoad(ctx, argv, argc);
+        HalfCUModule_onLoad(ctx, argv, argc);
         //*/
 
         Basic_Sketch_Module_onLoad<basic_cm>(ctx, argv, argc);
