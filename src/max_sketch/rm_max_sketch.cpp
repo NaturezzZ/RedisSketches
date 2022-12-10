@@ -1,4 +1,5 @@
 #include "rm_max_sketch.h"
+#include <string>
 
 #define CALLOC(count, size) RedisModule_Calloc(count, size)
 #define FREE(ptr) RedisModule_Free(ptr)
@@ -89,14 +90,16 @@ static int Insert_Cmd(RedisModuleCtx *ctx, RedisModuleString **argv, int argc)
         return REDISMODULE_OK;
     }
 
-    int itemCount = argc - 2;
+    int itemCount = (argc - 2)/2;
     RedisModule_ReplyWithArray(ctx, itemCount);
 
     for (int i = 0; i < itemCount; ++i)
     {
         size_t itemlen;
-        const char *item = RedisModule_StringPtrLen(argv[i + 2], &itemlen);
-        long long result = sketch->insert(item, itemlen, 1);
+        const char *item = RedisModule_StringPtrLen(argv[2*i + 2], &itemlen);
+        const char *value = RedisModule_StringPtrLen(argv[2*i + 3], NULL);
+        uint32_t v = (uint32_t)atoi(value);
+        long long result = sketch->insert(item, itemlen, v);
         RedisModule_ReplyWithLongLong(ctx, result);
     }
     RedisModule_ReplicateVerbatim(ctx);

@@ -40,6 +40,10 @@ DEPS = module.o \
 	   cu/cu.o \
 	   cs/rm_cs.o \
 	   cs/cs.o \
+	   max_sketch/rm_max_sketch.o \
+	   max_sketch/max_sketch.o \
+	   half_cu/rm_half_cu.o \
+	   half_cu/half_cu.o \
 	   tower_cm/rm_tower_cm.o \
 	   tower_cm/tower_cm.o \
 	   tower_cu/rm_tower_cu.o \
